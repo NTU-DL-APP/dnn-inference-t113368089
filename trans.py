@@ -9,6 +9,10 @@ model = tf.keras.models.load_model('model/fashion_mnist.h5')
 architecture = []
 for layer in model.layers:
     ltype = layer.__class__.__name__
+
+    if ltype == "Dropout":
+        continue  # 推論不需要 Dropout
+
     entry = {
         "name": layer.name,
         "type": ltype,
@@ -21,6 +25,7 @@ for layer in model.layers:
     elif ltype == "Flatten":
         entry["weights"] = []
         entry["config"] = {}
+
     architecture.append(entry)
 
 # 3. 輸出 JSON

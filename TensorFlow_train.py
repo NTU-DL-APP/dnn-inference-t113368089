@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Flatten, Dense
+from tensorflow.keras.layers import Flatten, Dense, Dropout
 
 # 1. 加载并归一化数据
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.fashion_mnist.load_data()
@@ -11,6 +11,7 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 model = Sequential([
     Flatten(input_shape=(28,28), name='flatten'),
     Dense(128, activation='relu', name='dense_1'),
+    Dropout(0.3, name='dropout_1'),
     Dense(10,  activation='softmax', name='dense_2')
 ])
 
