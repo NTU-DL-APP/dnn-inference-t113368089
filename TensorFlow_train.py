@@ -34,5 +34,11 @@ with open('model/fashion_mnist.json', 'w') as f:
 
 # 6. 导出 weights (.npz)
 #    keys 要和 json 中 layer['weights'] 一一对应
-weight_dict = {w.name: w.numpy() for w in model.weights}
+layer_names = ['dense_1', 'dense_2']
+weight_dict = {}
+for name in layer_names:
+    layer = model.get_layer(name)
+    W, b = layer.get_weights()
+    weight_dict[f"{name}_W"] = W
+    weight_dict[f"{name}_b"] = b
 np.savez('model/fashion_mnist.npz', **weight_dict)
