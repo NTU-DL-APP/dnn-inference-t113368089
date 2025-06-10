@@ -20,7 +20,7 @@ model.compile(optimizer='adam',
 
 # 3. 训练
 model.fit(x_train, y_train,
-          epochs=10,
+          epochs=20,
           batch_size=128,
           validation_split=0.1)
 
