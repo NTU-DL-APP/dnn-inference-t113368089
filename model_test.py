@@ -39,7 +39,7 @@ def test_inference():
         print('Done')
 
         # Get predictions using argmax
-        predictions = np.argmax(outputs.squeeze(axis=1), axis=-1)
+        predictions = np.argmax(outputs.reshape((outputs.shape[0], -1)), axis=-1)
 
         # Calculate number of correct predictions
         correct = np.sum(predictions == y_test_shuffled)
